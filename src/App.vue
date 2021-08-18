@@ -1,28 +1,54 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app id="inspire">
+    <v-navigation-drawer
+        permanent
+        app
+        class="pt-4"
+        color="primary"
+    >
+
+      <v-avatar
+          size="144"
+          class="d-block text-center mx-auto mb-15">
+        <img
+            :src="require('@/assets/Alpaca-full.png')"
+             alt="Logo">
+      </v-avatar>
+
+      <v-list nav>
+        <SidebarItem title="Tempoross" icon="mdi-fish" href="tempoross-settings"/>
+        <SidebarItem title="Profiles" icon="mdi-content-save" href="profiles"/>
+      </v-list>
+
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-btn
+              color="secondary"
+              block>
+            Start
+          </v-btn>
+        </div>
+      </template>
+    </v-navigation-drawer>
+    <v-main>
+      <v-container fluid>
+        <v-row class="fill-height">
+          <v-col>
+            <transition name="fade">
+              <router-view/>
+            </transition>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SidebarItem from "@/components/SidebarItem";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: {SidebarItem}
+
+  //
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
